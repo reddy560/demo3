@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border: 0px;
+            padding: 0px;
+            outline: 0px;
+            margin: 0px;
+        }
+        .con{
+            width: 80%;
+            margin: auto;
+            margin-top: 10px;
+            display: flex;
+            gap:10px;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        
+        }
+        .card{
+            width: 35%;
+            height: 350px;
+            border: 2px double gray;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            gap:3px;
+            background-color: cadetblue;
+            align-items: center;
+            justify-content: space-evenly;
+            
+        }
+        .img{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .img img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        h1{
+            color: chocolate;
+            font-size: 18px;
+        }
+        h2{
+            color: dodgerblue;
+        }
+        .title{
+            color: blue;
+            font-size: 30px;
+            width: 100%;
+            text-align: center;
+        }
+        button{
+            font-size: 20px;
+            padding: 5px 10px;
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Shooping App</h1>
+    <div class="con">
+
+    </div>
+    <script>
+        
+
+        fetch("https://dummyjson.com/products").then((res)=>res.json())
+        .then((data)=>{
+            let arr=data.products
+            let rs=""
+            
+            for(i=0;i<arr.length;i++)
+            {
+                rs=rs+`<div class="card">
+                    <div class="img"><img src="${arr[i].images[0]}"/></div>
+                    <h1>Title : ${arr[i].title}</h1>
+                    <h6>Desc: ${arr[i].description}</h6>
+                    <h2>Price: ${arr[i].price}</h2>
+                    <h2>Rating: ${arr[i].rating}</h2>
+                    <button>Addcart</button>
+
+                    </div>
+
+                `
+                
+
+
+            }
+            document.getElementsByClassName("con")[0].innerHTML=rs
+
+        })
+    </script>
+    
+</body>
+</html>
